@@ -2,7 +2,7 @@
 
 import { motion, useScroll, AnimatePresence, type HTMLMotionProps } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
-import { FaGithub, FaEnvelope, FaExternalLinkAlt, FaRocket, FaLinkedin, FaDownload, FaPaperPlane, FaPython, FaJava, FaAws, FaDocker, FaNode, FaGitAlt, FaDatabase, FaUnity, FaUser, FaBriefcase, FaSuitcase, FaLaptopCode, FaBolt, FaBullseye, FaBookOpen, FaLightbulb } from 'react-icons/fa'
+import { FaGithub, FaEnvelope, FaExternalLinkAlt, FaRocket, FaLinkedin, FaDownload, FaPaperPlane, FaPython, FaJava, FaAws, FaDocker, FaNode, FaGitAlt, FaDatabase, FaUnity, FaUser, FaBriefcase, FaSuitcase, FaLaptopCode, FaBolt, FaBullseye, FaBookOpen, FaLightbulb, FaCopy } from 'react-icons/fa'
 import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiMicrosoftazure, SiMongodb, SiPostgresql, SiKubernetes, SiMysql, SiKotlin, SiGodotengine, SiBlender, SiVisualstudio } from 'react-icons/si'
 
 export default function Home() {
@@ -467,7 +467,7 @@ export default function Home() {
                       whileHover={{ scale: 1.15, rotate: 10 }}
                       whileTap={{ scale: 0.9 }}
                     >
-                      <FaEnvelope size={18} className="text-gray-300 hover:text-white" />
+                      <FaCopy size={18} className="text-gray-300 hover:text-white" />
                       <AnimatePresence>
                         {emailCopied && (
                           <motion.span
