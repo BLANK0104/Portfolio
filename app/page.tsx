@@ -199,61 +199,269 @@ export default function Home() {
         />
       </div>
 
-      {/* Rainbow Progress Bar */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 origin-left z-50 shadow-lg shadow-purple-500/50"
-        style={{ scaleX: scrollYProgress }}
-      />
-
-      {/* Floating Navigation with Glassmorphism */}
-      <motion.nav
+      {/* Ultra-Modern Floating Header with Integrated Progress */}
+      <motion.header
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 100 }}
-        className="fixed top-4 left-1/2 -translate-x-1/2 z-40 px-4 sm:px-8 py-3 sm:py-4 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-full shadow-2xl shadow-purple-500/10 max-w-[90vw] sm:max-w-none"
+        className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4"
       >
-        <div className="flex items-center gap-4 sm:gap-8">
-          <motion.div 
-            className="text-base sm:text-lg font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
-            whileHover={{ scale: 1.05 }}
-          >
-            UC
-          </motion.div>
-          <div className="flex gap-4 sm:gap-6">
-            <a 
-              href="https://github.com/BLANK0104" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="hover:text-purple-400 transition-colors"
-              aria-label="GitHub Profile"
-            >
-              <FaGithub size={18} className="sm:w-5 sm:h-5" />
-            </a>
-            <a 
-              href="https://www.linkedin.com/in/utsav-chandra/" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="hover:text-purple-400 transition-colors"
-              aria-label="LinkedIn Profile"
-            >
-              <FaLinkedin size={18} className="sm:w-5 sm:h-5" />
-            </a>
-            <button
-              onClick={copyEmail}
-              className="hover:text-purple-400 transition-colors relative"
-              aria-label="Copy Email"
-              title={emailCopied ? "Email Copied!" : "Copy Email"}
-            >
-              <FaEnvelope size={18} className="sm:w-5 sm:h-5" />
-              {emailCopied && (
-                <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs bg-purple-500 px-2 py-1 rounded whitespace-nowrap">
-                  Copied!
-                </span>
-              )}
-            </button>
+        <div className="relative w-full max-w-6xl">
+          {/* Animated Background Glow */}
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-purple-500/20 rounded-3xl blur-2xl"
+            animate={{
+              scale: [1, 1.05, 1],
+              opacity: [0.3, 0.5, 0.3],
+            }}
+            transition={{ duration: 3, repeat: Infinity }}
+          />
+
+          {/* Main Navigation Container */}
+          <div className="relative backdrop-blur-3xl bg-gradient-to-r from-slate-950/90 via-purple-950/60 to-slate-950/90 rounded-3xl border border-white/20 shadow-2xl overflow-hidden">
+            
+            {/* Top Progress Bar - Integrated into header */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-white/5 overflow-hidden rounded-t-3xl">
+              <motion.div
+                className="h-full bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500"
+                style={{ 
+                  width: `${scrollYProgress.get() * 100}%`,
+                  boxShadow: '0 0 20px rgba(168, 85, 247, 0.8)'
+                }}
+              />
+            </div>
+
+            <div className="px-6 py-4">
+              <div className="flex items-center justify-between">
+                
+                {/* Left: Animated Logo */}
+                <motion.a
+                  href="#"
+                  className="flex items-center gap-3 group"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <div className="relative w-12 h-12">
+                    {/* Animated Glow Ring */}
+                    <motion.div
+                      className="absolute inset-0 rounded-2xl"
+                      style={{
+                        background: 'conic-gradient(from 0deg, #a855f7, #ec4899, #8b5cf6, #a855f7)',
+                      }}
+                      animate={{
+                        rotate: 360,
+                      }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                    />
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl blur-lg"
+                      animate={{
+                        scale: [1, 1.3, 1],
+                        opacity: [0.5, 0.8, 0.5],
+                      }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    />
+                    {/* Logo Container */}
+                    <div className="absolute inset-[2px] bg-slate-950 rounded-2xl flex items-center justify-center overflow-hidden">
+                      {/* Hexagonal Pattern */}
+                      <svg className="w-full h-full" viewBox="0 0 48 48">
+                        {/* Background hexagon */}
+                        <motion.path
+                          d="M24 4 L38 12 L38 28 L24 36 L10 28 L10 12 Z"
+                          fill="url(#logoGradient)"
+                          stroke="url(#logoStroke)"
+                          strokeWidth="1"
+                          animate={{
+                            scale: [1, 1.05, 1],
+                          }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                        />
+                        {/* Inner design - stylized "UC" */}
+                        <text
+                          x="24"
+                          y="28"
+                          textAnchor="middle"
+                          className="font-black text-[16px]"
+                          fill="white"
+                        >
+                          UC
+                        </text>
+                        {/* Accent lines */}
+                        <motion.line
+                          x1="14" y1="24" x2="34" y2="24"
+                          stroke="url(#logoStroke)"
+                          strokeWidth="0.5"
+                          animate={{
+                            pathLength: [0, 1, 0],
+                          }}
+                          transition={{ duration: 3, repeat: Infinity }}
+                        />
+                        
+                        <defs>
+                          <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="#6366f1" stopOpacity="0.3" />
+                            <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.3" />
+                            <stop offset="100%" stopColor="#d946ef" stopOpacity="0.3" />
+                          </linearGradient>
+                          <linearGradient id="logoStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="#a855f7" />
+                            <stop offset="100%" stopColor="#ec4899" />
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="hidden sm:block">
+                    <div className="text-base font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                      Utsav Chandra
+                    </div>
+                    <div className="text-xs text-gray-400">Full Stack Developer</div>
+                  </div>
+                </motion.a>
+
+                {/* Center: Floating Nav Pills */}
+                <div className="hidden md:flex items-center gap-2">
+                  {[
+                    { name: 'About', href: '#about', icon: '👤' },
+                    { name: 'Projects', href: '#projects', icon: '💼' },
+                    { name: 'Experience', href: '#experience', icon: '🚀' },
+                    { name: 'Contact', href: '#contact', icon: '✉️' },
+                  ].map((item) => (
+                    <motion.a
+                      key={item.name}
+                      href={item.href}
+                      className="relative px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 backdrop-blur-sm transition-all group"
+                      whileHover={{ y: -2, scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <span className="text-sm font-medium text-gray-300 group-hover:text-white flex items-center gap-2">
+                        <span className="text-base">{item.icon}</span>
+                        {item.name}
+                      </span>
+                      <motion.div
+                        className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-500/20 to-pink-500/20"
+                        initial={{ opacity: 0 }}
+                        whileHover={{ opacity: 1 }}
+                      />
+                    </motion.a>
+                  ))}
+                </div>
+
+                {/* Right: Actions */}
+                <div className="flex items-center gap-2">
+                  {/* Circular Progress Indicator */}
+                  <motion.div
+                    className="hidden lg:flex items-center justify-center w-12 h-12 rounded-full bg-white/5 relative"
+                    whileHover={{ scale: 1.1 }}
+                  >
+                    <svg className="w-full h-full -rotate-90">
+                      <circle
+                        cx="24"
+                        cy="24"
+                        r="20"
+                        stroke="rgba(255,255,255,0.1)"
+                        strokeWidth="3"
+                        fill="none"
+                      />
+                      <motion.circle
+                        cx="24"
+                        cy="24"
+                        r="20"
+                        stroke="url(#gradient)"
+                        strokeWidth="3"
+                        fill="none"
+                        strokeLinecap="round"
+                        style={{
+                          pathLength: scrollYProgress,
+                        }}
+                        strokeDasharray="126"
+                      />
+                      <defs>
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#a855f7" />
+                          <stop offset="100%" stopColor="#ec4899" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                    <span className="absolute text-[10px] font-bold text-purple-400">
+                      {Math.round(scrollYProgress.get() * 100)}%
+                    </span>
+                  </motion.div>
+
+                  {/* Social Icons */}
+                  <div className="flex items-center gap-1">
+                    <motion.a
+                      href="https://github.com/BLANK0104"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2.5 hover:bg-white/10 rounded-xl transition-all"
+                      whileHover={{ scale: 1.15, rotate: 10 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      <FaGithub size={18} className="text-gray-300 hover:text-white" />
+                    </motion.a>
+                    <motion.a
+                      href="https://www.linkedin.com/in/utsav-chandra/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2.5 hover:bg-white/10 rounded-xl transition-all"
+                      whileHover={{ scale: 1.15, rotate: -10 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      <FaLinkedin size={18} className="text-gray-300 hover:text-white" />
+                    </motion.a>
+                    <motion.button
+                      onClick={copyEmail}
+                      className="relative p-2.5 hover:bg-white/10 rounded-xl transition-all"
+                      whileHover={{ scale: 1.15, rotate: 10 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      <FaEnvelope size={18} className="text-gray-300 hover:text-white" />
+                      <AnimatePresence>
+                        {emailCopied && (
+                          <motion.span
+                            initial={{ opacity: 0, y: 10, scale: 0.8 }}
+                            animate={{ opacity: 1, y: -40, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.8 }}
+                            className="absolute left-1/2 -translate-x-1/2 text-xs bg-purple-500 px-3 py-1.5 rounded-lg whitespace-nowrap shadow-lg"
+                          >
+                            ✓ Copied!
+                          </motion.span>
+                        )}
+                      </AnimatePresence>
+                    </motion.button>
+                  </div>
+
+                  {/* Resume Button */}
+                  <motion.a
+                    href="/Utsav_Chandra_Resume.pdf"
+                    download
+                    className="hidden sm:flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl font-semibold text-sm transition-all shadow-lg shadow-purple-500/30 border border-purple-400/30"
+                    whileHover={{ 
+                      scale: 1.05, 
+                      boxShadow: "0 0 30px rgba(168, 85, 247, 0.6)",
+                      borderColor: "rgba(168, 85, 247, 0.8)"
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <FaDownload size={14} />
+                    <span>Resume</span>
+                  </motion.a>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Glow Line */}
+            <motion.div
+              className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent"
+              animate={{
+                opacity: [0.3, 0.8, 0.3],
+              }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
           </div>
         </div>
-      </motion.nav>
+      </motion.header>
 
       {/* Hero with Text Scramble Effect */}
       <section className="min-h-screen flex items-center justify-center px-6 pt-32 pb-20 relative">
@@ -364,7 +572,7 @@ export default function Home() {
       </section>
 
       {/* About Me Section */}
-      <section className="py-32 px-6 relative">
+      <section id="about" className="py-32 px-6 relative">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -505,7 +713,7 @@ export default function Home() {
       </section>
 
       {/* Interactive Timeline */}
-      <section className="py-32 px-6 relative">
+      <section id="experience" className="py-32 px-6 relative">
         <div className="max-w-5xl mx-auto">
           <motion.h2
             initial={{ opacity: 0 }}
