@@ -85,7 +85,7 @@ export default function Home() {
     {
       name: "Treasure Hunt Platform",
       description: "Interactive gaming platform with real-time leaderboard and team collaboration",
-      year: "2024",
+      year: "2025",
       tech: ["React", "Node.js", "MongoDB"],
       github: "https://github.com/BLANK0104/Treasure_Hunt_Frontend",
       color: "#F59E0B",
@@ -94,7 +94,7 @@ export default function Home() {
     {
       name: "Leave Management System",
       description: "Enterprise leave management with mobile support and approval workflows",
-      year: "2023",
+      year: "2024",
       tech: ["Kotlin", "Java", "Node.js"],
       github: "https://github.com/BLANK0104/LeaveRequest",
       color: "#10B981",
@@ -103,7 +103,7 @@ export default function Home() {
     {
       name: "YouTube Music Desktop",
       description: "Custom desktop application for YouTube Music with enhanced features and offline support",
-      year: "2023",
+      year: "2025",
       tech: ["Electron", "JavaScript", "YouTube API"],
       github: "https://github.com/BLANK0104/YT-music",
       color: "#EF4444",
@@ -112,7 +112,7 @@ export default function Home() {
     {
       name: "Malware Detection System",
       description: "ML-based malware detection with automated file scanning",
-      year: "2023",
+      year: "2025",
       tech: ["Python", "Machine Learning"],
       github: "https://github.com/BLANK0104/Malware-detection-and-ftp",
       color: "#6366F1",
@@ -161,14 +161,14 @@ export default function Home() {
       company: "MemoTag",
       role: "AI/ML Developer",
       duration: "3 Months",
-      year: "2024",
+      year: "2025",
       logo: "/memotag logo.png"
     },
     {
       company: "Hindustan Aeronautics Limited",
       role: "Intern",
       duration: "1 Month",
-      year: "2024",
+      year: "2025",
       logo: "/hal logo.png"
     },
     {
