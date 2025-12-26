@@ -2,7 +2,8 @@
 
 import { motion, useScroll, AnimatePresence } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
-import { FaGithub, FaEnvelope, FaExternalLinkAlt, FaRocket } from 'react-icons/fa'
+import { FaGithub, FaEnvelope, FaExternalLinkAlt, FaRocket, FaLinkedin, FaDownload, FaPaperPlane, FaPython, FaJava, FaAws, FaDocker, FaNode, FaGitAlt, FaDatabase, FaUnity } from 'react-icons/fa'
+import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiMicrosoftazure, SiMongodb, SiPostgresql, SiKubernetes, SiMysql, SiKotlin, SiGodotengine, SiBlender, SiVisualstudio } from 'react-icons/si'
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -15,6 +16,7 @@ export default function Home() {
   const [scrambledText, setScrambledText] = useState("Full Stack Developer")
   const [currentEmoji, setCurrentEmoji] = useState(0)
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0)
+  const [emailCopied, setEmailCopied] = useState(false)
   const emojis = ["🚀", "💡", "⚡", "🎨", "🔥", "✨"]
   const roles = ["Full Stack Developer", "Cloud Architect", "Cybersecurity Enthusiast"]
 
@@ -62,6 +64,12 @@ export default function Home() {
 
   const scrambleText = () => {
     scrambleToText(roles[currentRoleIndex])
+  }
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText('utsav.chandra508@nmims.in')
+    setEmailCopied(true)
+    setTimeout(() => setEmailCopied(false), 2000)
   }
 
   const projects = [
@@ -222,12 +230,27 @@ export default function Home() {
               <FaGithub size={18} className="sm:w-5 sm:h-5" />
             </a>
             <a 
-              href="mailto:utsav.chandra508@nmims.in" 
+              href="https://www.linkedin.com/in/utsav-chandra/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
               className="hover:text-purple-400 transition-colors"
-              aria-label="Email Contact"
+              aria-label="LinkedIn Profile"
+            >
+              <FaLinkedin size={18} className="sm:w-5 sm:h-5" />
+            </a>
+            <button
+              onClick={copyEmail}
+              className="hover:text-purple-400 transition-colors relative"
+              aria-label="Copy Email"
+              title={emailCopied ? "Email Copied!" : "Copy Email"}
             >
               <FaEnvelope size={18} className="sm:w-5 sm:h-5" />
-            </a>
+              {emailCopied && (
+                <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs bg-purple-500 px-2 py-1 rounded whitespace-nowrap">
+                  Copied!
+                </span>
+              )}
+            </button>
           </div>
         </div>
       </motion.nav>
@@ -312,7 +335,11 @@ export default function Home() {
                   transition={{ type: "spring", stiffness: 400 }}
                 />
               </MagneticButton>
-              <MagneticButton href="mailto:utsav.chandra508@nmims.in" variant="outline">
+              <MagneticButton href="/Utsav_Chandra_Resume.pdf" variant="outline" download>
+                <FaDownload className="inline mr-2" />
+                Download Resume
+              </MagneticButton>
+              <MagneticButton href="#contact" variant="outline">
                 Say Hello 👋
               </MagneticButton>
             </motion.div>
@@ -336,6 +363,121 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* About Me Section */}
+      <section className="py-32 px-6 relative">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-4xl sm:text-6xl md:text-8xl font-black mb-12 text-center bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              About Me
+            </h2>
+            
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <motion.div
+                className="relative"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <div className="p-8 bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-xl rounded-3xl border border-white/10">
+                  <p className="text-lg text-gray-300 leading-relaxed mb-6">
+                    I'm a B.Tech student at <span className="text-purple-400 font-semibold">NMIMS University</span> with a passion for building innovative solutions that solve real-world problems. My journey in tech started with curiosity about how things work, and has evolved into a deep love for creating scalable applications.
+                  </p>
+                  <p className="text-lg text-gray-300 leading-relaxed mb-6">
+                    I specialize in <span className="text-purple-400 font-semibold">Full Stack Development</span>, with hands-on experience in cloud architecture and cybersecurity. I've had the privilege to intern at organizations like <span className="text-purple-400">Memotag Technologies</span>, where I developed enterprise-level applications, and <span className="text-purple-400">HAL & PNB</span>, gaining industry exposure.
+                  </p>
+                  <p className="text-lg text-gray-300 leading-relaxed">
+                    When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or learning about cloud infrastructure. I'm actively seeking <span className="text-pink-400 font-semibold">internship opportunities</span> where I can contribute, learn, and grow as a developer.
+                  </p>
+                </div>
+              </motion.div>
+
+              <motion.div
+                className="space-y-6"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <div className="p-6 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10">
+                  <h3 className="text-2xl font-bold mb-3 text-purple-400">🎯 Current Focus</h3>
+                  <p className="text-gray-300">Building cloud-native applications and mastering Azure/AWS services for scalable solutions</p>
+                </div>
+                
+                <div className="p-6 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10">
+                  <h3 className="text-2xl font-bold mb-3 text-pink-400">📚 Learning</h3>
+                  <p className="text-gray-300">Kubernetes, microservices architecture, and advanced cybersecurity practices</p>
+                </div>
+                
+                <div className="p-6 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10">
+                  <h3 className="text-2xl font-bold mb-3 text-purple-400">💡 Interests</h3>
+                  <p className="text-gray-300">DevOps, system design, AI/ML integration, and building developer tools</p>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Tech Stack Section */}
+      <section className="py-32 px-6 relative">
+        <div className="max-w-7xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-4xl sm:text-6xl md:text-8xl font-black mb-20 text-center bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
+          >
+            Tech Stack
+          </motion.h2>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+            {[
+              { icon: <FaPython size={48} />, name: "Python", color: "#3776AB" },
+              { icon: <FaJava size={48} />, name: "Java", color: "#007396" },
+              { icon: <SiKotlin size={48} />, name: "Kotlin", color: "#7F52FF" },
+              { icon: <SiReact size={48} />, name: "React", color: "#61DAFB" },
+              { icon: <SiNextdotjs size={48} />, name: "Next.js", color: "#FFFFFF" },
+              { icon: <SiTypescript size={48} />, name: "TypeScript", color: "#3178C6" },
+              { icon: <FaNode size={48} />, name: "Node.js", color: "#339933" },
+              { icon: <FaUnity size={48} />, name: "Unity", color: "#FFFFFF" },
+              { icon: <SiGodotengine size={48} />, name: "Godot", color: "#478CBF" },
+              { icon: <SiBlender size={48} />, name: "Blender", color: "#F5792A" },
+              { icon: <SiVisualstudio size={48} />, name: "Visual Studio", color: "#5C2D91" },
+              { icon: <SiMicrosoftazure size={48} />, name: "Azure", color: "#0078D4" },
+              { icon: <FaAws size={48} />, name: "AWS", color: "#FF9900" },
+              { icon: <FaDocker size={48} />, name: "Docker", color: "#2496ED" },
+              { icon: <SiKubernetes size={48} />, name: "Kubernetes", color: "#326CE5" },
+              { icon: <SiMongodb size={48} />, name: "MongoDB", color: "#47A248" },
+              { icon: <SiMysql size={48} />, name: "MySQL", color: "#4479A1" },
+              { icon: <SiPostgresql size={48} />, name: "PostgreSQL", color: "#4169E1" },
+              { icon: <SiTailwindcss size={48} />, name: "Tailwind", color: "#06B6D4" },
+              { icon: <FaGitAlt size={48} />, name: "Git", color: "#F05032" },
+            ].map((tech, index) => (
+              <motion.div
+                key={tech.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                className="p-6 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-purple-500/50 transition-all flex flex-col items-center justify-center gap-3 cursor-pointer group"
+              >
+                <div style={{ color: tech.color }} className="group-hover:scale-110 transition-transform">
+                  {tech.icon}
+                </div>
+                <span className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">
+                  {tech.name}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Bento Grid Projects */}
       <section id="projects" className="py-32 px-6">
         <div className="max-w-7xl mx-auto">
@@ -348,7 +490,6 @@ export default function Home() {
             <h2 className="text-4xl sm:text-6xl md:text-8xl font-black mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               My Projects
             </h2>
-            <p className="text-gray-400 text-base sm:text-lg md:text-xl">Hover for a surprise</p>
           </motion.div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 auto-rows-[250px] md:auto-rows-[300px]">
@@ -584,6 +725,96 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Contact Form Section */}
+      <section id="contact" className="py-32 px-6 relative">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-4xl sm:text-6xl md:text-8xl font-black mb-6 text-center bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              Get in Touch
+            </h2>
+            <p className="text-center text-gray-400 text-lg mb-12">
+              Have a project in mind or want to collaborate? Drop me a message!
+            </p>
+
+            <motion.form
+              className="space-y-6 p-8 bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10"
+              whileHover={{ scale: 1.01 }}
+              transition={{ type: "spring", stiffness: 300 }}
+              action="https://formspree.io/f/mjgvveeg"
+              method="POST"
+            >
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 outline-none transition-all text-white placeholder-gray-500"
+                  placeholder="Your name"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 outline-none transition-all text-white placeholder-gray-500"
+                  placeholder="your.email@example.com"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  rows={6}
+                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 outline-none transition-all text-white placeholder-gray-500 resize-none"
+                  placeholder="Tell me about your project or inquiry..."
+                />
+              </div>
+
+              <motion.button
+                type="submit"
+                className="w-full px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-purple-500/50 transition-all flex items-center justify-center gap-2"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <FaPaperPlane />
+                Send Message
+              </motion.button>
+            </motion.form>
+
+            <div className="mt-12 flex justify-center gap-6">
+              <motion.button
+                onClick={copyEmail}
+                className="flex items-center gap-2 text-gray-400 hover:text-purple-400 transition-colors cursor-pointer"
+                whileHover={{ scale: 1.05 }}
+              >
+                <FaEnvelope size={20} />
+                <span>{emailCopied ? "Email Copied!" : "utsav.chandra508@nmims.in"}</span>
+              </motion.button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* CTA with Animated Background */}
       <section className="py-40 px-6 relative overflow-hidden">
         <motion.div
@@ -618,9 +849,13 @@ export default function Home() {
             </motion.h2>
             
             <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center px-4">
-              <MagneticButton href="mailto:utsav.chandra508@nmims.in" size="large">
+              <MagneticButton href="#contact" size="large">
                 <FaRocket className="mr-2" />
                 Get in Touch
+              </MagneticButton>
+              <MagneticButton href="/Utsav_Chandra_Resume.pdf" variant="outline" size="large" download>
+                <FaDownload className="mr-2" />
+                Download Resume
               </MagneticButton>
               <MagneticButton href="https://github.com/BLANK0104" variant="outline" size="large">
                 <FaGithub className="mr-2" />
