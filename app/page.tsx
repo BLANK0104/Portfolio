@@ -14,7 +14,9 @@ export default function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [scrambledText, setScrambledText] = useState("Full Stack Developer")
   const [currentEmoji, setCurrentEmoji] = useState(0)
+  const [currentRoleIndex, setCurrentRoleIndex] = useState(0)
   const emojis = ["🚀", "💡", "⚡", "🎨", "🔥", "✨"]
+  const roles = ["Full Stack Developer", "Cloud Architect", "Cybersecurity Enthusiast"]
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -31,21 +33,35 @@ export default function Home() {
     return () => clearInterval(interval)
   }, [])
 
-  const scrambleText = () => {
-    const text = "Full Stack Developer"
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentRoleIndex((prev) => {
+        const nextIndex = (prev + 1) % roles.length
+        scrambleToText(roles[nextIndex])
+        return nextIndex
+      })
+    }, 4000)
+    return () => clearInterval(interval)
+  }, [])
+
+  const scrambleToText = (targetText: string) => {
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     let iterations = 0
     
     const interval = setInterval(() => {
-      setScrambledText(text.split("").map((char, index) => {
+      setScrambledText(targetText.split("").map((char, index) => {
         if (char === " ") return " "
-        if (index < iterations) return text[index]
+        if (index < iterations) return targetText[index]
         return chars[Math.floor(Math.random() * chars.length)]
       }).join(""))
       
-      if (iterations >= text.length) clearInterval(interval)
+      if (iterations >= targetText.length) clearInterval(interval)
       iterations += 1/3
     }, 30)
+  }
+
+  const scrambleText = () => {
+    scrambleToText(roles[currentRoleIndex])
   }
 
   const projects = [
@@ -55,7 +71,8 @@ export default function Home() {
       year: "2024",
       tech: ["React", "Node.js", "PostgreSQL"],
       github: "https://github.com/BLANK0104/EMP",
-      color: "#3B82F6"
+      color: "#3B82F6",
+      image: "/emp.png"
     },
     {
       name: "Lost & Found System",
@@ -63,7 +80,8 @@ export default function Home() {
       year: "2024",
       tech: ["JavaScript", "Node.js", "MongoDB"],
       github: "https://github.com/BLANK0104/lost_and_found_frontend",
-      color: "#8B5CF6"
+      color: "#8B5CF6",
+      image: "/lostandfound.png"
     },
     {
       name: "Treasure Hunt Platform",
@@ -71,7 +89,8 @@ export default function Home() {
       year: "2024",
       tech: ["React", "Node.js", "MongoDB"],
       github: "https://github.com/BLANK0104/Treasure_Hunt_Frontend",
-      color: "#F59E0B"
+      color: "#F59E0B",
+      image: "/treasurehunt.png"
     },
     {
       name: "Leave Management System",
@@ -79,15 +98,17 @@ export default function Home() {
       year: "2023",
       tech: ["Kotlin", "Java", "Node.js"],
       github: "https://github.com/BLANK0104/LeaveRequest",
-      color: "#10B981"
+      color: "#10B981",
+      image: "/leavemanagement.png"
     },
     {
-      name: "Animekai",
-      description: "Feature-rich Android app for streaming anime with offline viewing",
+      name: "YouTube Music Desktop",
+      description: "Custom desktop application for YouTube Music with enhanced features and offline support",
       year: "2023",
-      tech: ["Kotlin", "Android", "REST API"],
-      github: "https://github.com/BLANK0104/Animekai-web-app",
-      color: "#EF4444"
+      tech: ["Electron", "JavaScript", "YouTube API"],
+      github: "https://github.com/BLANK0104/YT-music",
+      color: "#EF4444",
+      image: "/yt music.png"
     },
     {
       name: "Malware Detection System",
@@ -95,15 +116,21 @@ export default function Home() {
       year: "2023",
       tech: ["Python", "Machine Learning"],
       github: "https://github.com/BLANK0104/Malware-detection-and-ftp",
-      color: "#6366F1"
+      color: "#6366F1",
+      image: "/malwarescanadmin.png"
     }
   ]
 
   const achievements = [
     { title: "TryHackMe CTF 2025", detail: "Ranked 77th globally (top 3%) out of 3,200 teams" },
-    { title: "NMIMS Hackathon", detail: "4th place • Honorable Mention" },
+    { title: "NMIMS Hackathon 2025", detail: "4th place • Honorable Mention" },
     { title: "AWS Cloud Architect", detail: "Certified" },
     { title: "AWS GenAI", detail: "Certified" },
+    { title: "KakushIN by Nomura", detail: "Finalist" },
+    { title: "Ambiora Tech Fest", detail: "Convener of college's annual tech fest" },
+    { title: "MMGEIS Program 2024", detail: "Master Mentors Geo-Enabling Indian Scholars" },
+    { title: "Accenture iAspire 2022", detail: "Gold Level certification" },
+    { title: "Professional Writing 2025", detail: "Certified by Saylor Academy" },
   ]
 
   const experience = [
@@ -111,19 +138,22 @@ export default function Home() {
       company: "MemoTag",
       role: "AI/ML Developer",
       duration: "3 Months",
-      year: "2024"
+      year: "2024",
+      logo: "/memotag logo.png"
     },
     {
       company: "Hindustan Aeronautics Limited",
       role: "Intern",
       duration: "1 Month",
-      year: "2024"
+      year: "2024",
+      logo: "/hal logo.png"
     },
     {
       company: "Punjab National Bank",
       role: "Banking Operations Intern",
       duration: "3 Weeks",
-      year: "2023"
+      year: "2023",
+      logo: "/pnb logo.png"
     }
   ]
 
@@ -210,26 +240,28 @@ export default function Home() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
-            {/* Animated Emoji */}
+            {/* Profile Image */}
             <motion.div 
-              className="text-8xl mb-8"
-              key={currentEmoji}
+              className="mb-8 relative"
               initial={{ scale: 0, rotate: -180 }}
               animate={{ scale: 1, rotate: 0 }}
-              exit={{ scale: 0, rotate: 180 }}
               transition={{ type: "spring", stiffness: 200, damping: 15 }}
             >
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={currentEmoji}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {emojis[currentEmoji]}
-                </motion.span>
-              </AnimatePresence>
+              <div className="relative w-32 h-32 mx-auto">
+                <motion.div
+                  className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 blur-xl opacity-50"
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [0.5, 0.8, 0.5],
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                />
+                <img 
+                  src="/utsav.JPG" 
+                  alt="Utsav Chandra"
+                  className="relative w-full h-full rounded-full object-cover border-4 border-purple-500/50 shadow-2xl"
+                />
+              </div>
             </motion.div>
 
             <h1 className="text-7xl md:text-9xl font-black mb-6 tracking-tight">
@@ -261,8 +293,8 @@ export default function Home() {
               transition={{ delay: 0.6 }}
               className="text-xl text-gray-400 max-w-2xl mx-auto mb-12"
             >
-              Creating digital experiences that surprise and delight. 
-              Hover over things to discover hidden interactions ✨
+              B.Tech Student passionate about Full Stack Development, Cloud Computing, and Cybersecurity.
+              Building projects and learning cutting-edge technologies ✨
             </motion.p>
             
             {/* Magnetic Buttons */}
@@ -273,7 +305,7 @@ export default function Home() {
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
               <MagneticButton href="#projects">
-                <span className="relative z-10">Explore Work</span>
+                <span className="relative z-10">View Projects</span>
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full"
                   whileHover={{ scale: 1.1 }}
@@ -314,7 +346,7 @@ export default function Home() {
             className="text-center mb-20"
           >
             <h2 className="text-6xl md:text-8xl font-black mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Featured Work
+              My Projects
             </h2>
             <p className="text-gray-400 text-xl">Hover for a surprise</p>
           </motion.div>
@@ -340,7 +372,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-6xl md:text-8xl font-black mb-20 text-center bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
           >
-            Journey
+            Experience & Internships
           </motion.h2>
           
           <div className="space-y-12 relative">
@@ -377,9 +409,16 @@ export default function Home() {
                 >
                   <div className="p-8 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-purple-500/50 transition-all shadow-xl">
                     <div className="flex justify-between items-start mb-4">
-                      <div>
-                        <h3 className="text-2xl font-bold mb-2">{exp.company}</h3>
-                        <p className="text-purple-400 font-medium">{exp.role}</p>
+                      <div className="flex items-center gap-4">
+                        <img 
+                          src={exp.logo} 
+                          alt={exp.company}
+                          className="w-12 h-12 object-contain rounded-lg bg-white/10 p-2"
+                        />
+                        <div>
+                          <h3 className="text-2xl font-bold mb-2">{exp.company}</h3>
+                          <p className="text-purple-400 font-medium">{exp.role}</p>
+                        </div>
                       </div>
                       <span className="px-3 py-1 bg-purple-500/20 rounded-full text-sm font-medium">
                         {exp.year}
@@ -393,6 +432,124 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Skills Section */}
+      <section className="py-32 px-6 bg-white/[0.02]">
+        <div className="max-w-7xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-6xl md:text-8xl font-black mb-20 text-center bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
+          >
+            Skills & Learning
+          </motion.h2>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="p-8 bg-gradient-to-br from-purple-500/5 to-pink-500/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-purple-500/30 transition-all"
+            >
+              <h3 className="text-2xl font-bold mb-4 text-purple-400">Development</h3>
+              <div className="flex flex-wrap gap-2">
+                {["Full Stack Web Dev", "Mobile Development", "REST APIs", "Database Management"].map((skill, i) => (
+                  <span key={i} className="px-3 py-1 bg-white/5 rounded-full text-sm border border-white/10">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="p-8 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-blue-500/30 transition-all"
+            >
+              <h3 className="text-2xl font-bold mb-4 text-blue-400">Cloud & DevOps</h3>
+              <div className="flex flex-wrap gap-2">
+                {["AWS Cloud", "DevOps", "CI/CD", "Docker", "VPS Management"].map((skill, i) => (
+                  <span key={i} className="px-3 py-1 bg-white/5 rounded-full text-sm border border-white/10">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="p-8 bg-gradient-to-br from-red-500/5 to-orange-500/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-red-500/30 transition-all"
+            >
+              <h3 className="text-2xl font-bold mb-4 text-red-400">Security & AI</h3>
+              <div className="flex flex-wrap gap-2">
+                {["Cybersecurity", "Penetration Testing", "Machine Learning", "AI/ML"].map((skill, i) => (
+                  <span key={i} className="px-3 py-1 bg-white/5 rounded-full text-sm border border-white/10">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="p-8 bg-gradient-to-br from-green-500/5 to-emerald-500/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-green-500/30 transition-all"
+            >
+              <h3 className="text-2xl font-bold mb-4 text-green-400">Tools & Version Control</h3>
+              <div className="flex flex-wrap gap-2">
+                {["Git", "GitHub", "VS Code", "Linux", "Agile"].map((skill, i) => (
+                  <span key={i} className="px-3 py-1 bg-white/5 rounded-full text-sm border border-white/10">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="p-8 bg-gradient-to-br from-yellow-500/5 to-orange-500/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-yellow-500/30 transition-all"
+            >
+              <h3 className="text-2xl font-bold mb-4 text-yellow-400">Programming Languages</h3>
+              <div className="flex flex-wrap gap-2">
+                {["JavaScript", "Python", "Java", "Kotlin", "TypeScript"].map((skill, i) => (
+                  <span key={i} className="px-3 py-1 bg-white/5 rounded-full text-sm border border-white/10">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="p-8 bg-gradient-to-br from-pink-500/5 to-purple-500/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-pink-500/30 transition-all"
+            >
+              <h3 className="text-2xl font-bold mb-4 text-pink-400">Soft Skills</h3>
+              <div className="flex flex-wrap gap-2">
+                {["Problem-Solving", "Leadership", "Communication", "Teamwork", "Innovation"].map((skill, i) => (
+                  <span key={i} className="px-3 py-1 bg-white/5 rounded-full text-sm border border-white/10">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Achievements with Reveal Animation */}
       <section className="py-32 px-6">
         <div className="max-w-6xl mx-auto">
@@ -402,10 +559,10 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-6xl md:text-8xl font-black mb-20 text-center bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
           >
-            Achievements
+            Achievements & Certifications
           </motion.h2>
           
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {achievements.map((achievement, index) => (
               <motion.div
                 key={index}
@@ -454,16 +611,16 @@ export default function Home() {
               whileHover={{ scale: 1.05 }}
             >
               <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
-                Let&apos;s Create
+                Let's Connect
               </span>
               <br />
-              <span className="text-white">Something Amazing</span>
+              <span className="text-white">& Collaborate</span>
             </motion.h2>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <MagneticButton href="mailto:utsav.chandra@example.com" size="large">
                 <FaRocket className="mr-2" />
-                Start a Project
+                Get in Touch
               </MagneticButton>
               <MagneticButton href="https://github.com/BLANK0104" variant="outline" size="large">
                 <FaGithub className="mr-2" />
@@ -478,7 +635,7 @@ export default function Home() {
       <footer className="py-12 px-6 border-t border-white/10">
         <div className="max-w-7xl mx-auto text-center">
           <p className="text-gray-500">
-            © 2025 Utsav Chandra • Made with 💜 and ✨
+            © 2025 Utsav Chandra • B.Tech Student at NMIMS • Built with 💜 and ✨
           </p>
         </div>
       </footer>
@@ -583,8 +740,15 @@ function TiltCard({ project, className }: { project: any, className?: string }) 
           transform: "translateZ(0px)"
         }}
       >
+        {/* Project Image */}
+        <img 
+          src={project.image} 
+          alt={project.name}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/70 to-black/30" />
         
         {/* Content */}
         <div className="relative h-full p-8 flex flex-col justify-end" style={{ transform: "translateZ(50px)" }}>
