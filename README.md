@@ -2,7 +2,7 @@
 
 A modern, responsive portfolio website built with Next.js and Tailwind CSS, showcasing projects, achievements, and professional experience.
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Local Development
 
@@ -93,7 +93,7 @@ MPSTME, NMIMS University
 - **Tailwind CSS** - Styling
 - **React Icons** - Icon library
 
-## ✨ Features
+## Features
 
 - Responsive design (mobile-friendly)
 - Modern UI with smooth animations
@@ -113,7 +113,7 @@ MPSTME, NMIMS University
 6. **Skills** - Technical and soft skills
 7. **Contact** - Links to GitHub and email
 
-## 🎨 Customization
+## Customization
 
 Update your contact information in `app/page.tsx`:
 - Replace `utsav.chandra@example.com` with your actual email

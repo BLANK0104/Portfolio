@@ -2,7 +2,7 @@
 
 import { motion, useScroll, AnimatePresence, type HTMLMotionProps } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
-import { FaGithub, FaEnvelope, FaExternalLinkAlt, FaRocket, FaLinkedin, FaDownload, FaPaperPlane, FaPython, FaJava, FaAws, FaDocker, FaNode, FaGitAlt, FaDatabase, FaUnity } from 'react-icons/fa'
+import { FaGithub, FaEnvelope, FaExternalLinkAlt, FaRocket, FaLinkedin, FaDownload, FaPaperPlane, FaPython, FaJava, FaAws, FaDocker, FaNode, FaGitAlt, FaDatabase, FaUnity, FaUser, FaBriefcase, FaSuitcase, FaLaptopCode, FaBolt, FaBullseye, FaBookOpen, FaLightbulb } from 'react-icons/fa'
 import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiMicrosoftazure, SiMongodb, SiPostgresql, SiKubernetes, SiMysql, SiKotlin, SiGodotengine, SiBlender, SiVisualstudio } from 'react-icons/si'
 
 export default function Home() {
@@ -14,10 +14,8 @@ export default function Home() {
   
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [scrambledText, setScrambledText] = useState("Full Stack Developer")
-  const [currentEmoji, setCurrentEmoji] = useState(0)
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0)
   const [emailCopied, setEmailCopied] = useState(false)
-  const emojis = ["🚀", "💡", "⚡", "🎨", "🔥", "✨"]
   const roles = ["Full Stack Developer", "Cloud Architect", "Cybersecurity Enthusiast"]
 
   useEffect(() => {
@@ -26,13 +24,6 @@ export default function Home() {
     }
     window.addEventListener('mousemove', handleMouseMove)
     return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [])
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentEmoji((prev) => (prev + 1) % emojis.length)
-    }, 2000)
-    return () => clearInterval(interval)
   }, [])
 
   useEffect(() => {
@@ -130,15 +121,39 @@ export default function Home() {
   ]
 
   const achievements = [
-    { title: "TryHackMe CTF 2025", detail: "Ranked 77th globally (top 3%) out of 3,200 teams" },
+    {
+      title: "TryHackMe CTF 2025",
+      detail: "Ranked 77th globally (top 3%) out of 3,200 teams",
+      certificate: "/certificates/THM-TEOWFQSOLF.pdf",
+    },
     { title: "NMIMS Hackathon 2025", detail: "4th place • Honorable Mention" },
-    { title: "AWS Cloud Architect", detail: "Certified" },
-    { title: "AWS GenAI", detail: "Certified" },
+    {
+      title: "AWS Cloud Architect",
+      detail: "Certified",
+      certificate: "/certificates/AWS_Academy_Graduate___Cloud_Architecting.pdf",
+    },
+    {
+      title: "AWS GenAI",
+      detail: "Certified",
+      certificate: "/certificates/AWSAcademy__GeAi.pdf",
+    },
     { title: "KakushIN by Nomura", detail: "Finalist" },
     { title: "Ambiora Tech Fest", detail: "Convener of college's annual tech fest" },
-    { title: "MMGEIS Program 2024", detail: "Master Mentors Geo-Enabling Indian Scholars" },
-    { title: "Accenture iAspire 2022", detail: "Gold Level certification" },
-    { title: "Professional Writing 2025", detail: "Certified by Saylor Academy" },
+    {
+      title: "MMGEIS Program 2024",
+      detail: "Master Mentors Geo-Enabling Indian Scholars",
+      certificate: "/certificates/mmgeis.png",
+    },
+    {
+      title: "Accenture iAspire 2022",
+      detail: "Gold Level certification",
+      certificate: "/certificates/Utsav%20Chandra%20Go%20for%20Gold-iAspire%20certificate.pdf",
+    },
+    {
+      title: "Professional Writing 2025",
+      detail: "Certified by Saylor Academy",
+      certificate: "/certificates/professional%20writing.pdf",
+    },
   ]
 
   const experience = [
@@ -218,20 +233,20 @@ export default function Home() {
           />
 
           {/* Main Navigation Container */}
-          <div className="relative backdrop-blur-3xl bg-gradient-to-r from-slate-950/90 via-purple-950/60 to-slate-950/90 rounded-3xl border border-white/20 shadow-2xl overflow-hidden">
+          <div className="relative backdrop-blur-3xl bg-gradient-to-r from-slate-950/90 via-purple-950/60 to-slate-950/90 rounded-3xl border border-white/20 shadow-2xl overflow-hidden ring-1 ring-white/10">
             
             {/* Top Progress Bar - Integrated into header */}
             <div className="absolute top-0 left-0 right-0 h-1 bg-white/5 overflow-hidden rounded-t-3xl">
               <motion.div
-                className="h-full bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500"
-                style={{ 
-                  width: `${scrollYProgress.get() * 100}%`,
+                className="h-full bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 origin-left"
+                style={{
+                  scaleX: scrollYProgress,
                   boxShadow: '0 0 20px rgba(168, 85, 247, 0.8)'
                 }}
               />
             </div>
 
-            <div className="px-6 py-4">
+            <div className="px-4 py-3 sm:px-6 sm:py-4">
               <div className="flex items-center justify-between">
                 
                 {/* Left: Animated Logo */}
@@ -315,17 +330,42 @@ export default function Home() {
                     <div className="text-base font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
                       Utsav Chandra
                     </div>
-                    <div className="text-xs text-gray-400">Full Stack Developer</div>
                   </div>
                 </motion.a>
+
+                {/* Mobile: Compact Icon Nav */}
+                <div className="flex md:hidden items-center gap-1">
+                  {[
+                    { name: 'About', href: '#about', icon: <FaUser size={16} /> },
+                    { name: 'Projects', href: '#projects', icon: <FaBriefcase size={16} /> },
+                    { name: 'Experience', href: '#experience', icon: <FaSuitcase size={16} /> },
+                    { name: 'Contact', href: '#contact', icon: <FaEnvelope size={16} /> },
+                  ].map((item) => (
+                    <motion.a
+                      key={item.name}
+                      href={item.href}
+                      aria-label={item.name}
+                      className="relative p-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all"
+                      whileHover={{ y: -1, scale: 1.06 }}
+                      whileTap={{ scale: 0.94 }}
+                    >
+                      <span className="text-gray-200">{item.icon}</span>
+                      <motion.div
+                        className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-500/20 to-pink-500/20"
+                        initial={{ opacity: 0 }}
+                        whileHover={{ opacity: 1 }}
+                      />
+                    </motion.a>
+                  ))}
+                </div>
 
                 {/* Center: Floating Nav Pills */}
                 <div className="hidden md:flex items-center gap-2">
                   {[
-                    { name: 'About', href: '#about', icon: '👤' },
-                    { name: 'Projects', href: '#projects', icon: '💼' },
-                    { name: 'Experience', href: '#experience', icon: '🚀' },
-                    { name: 'Contact', href: '#contact', icon: '✉️' },
+                    { name: 'About', href: '#about', icon: <FaUser size={16} /> },
+                    { name: 'Projects', href: '#projects', icon: <FaBriefcase size={16} /> },
+                    { name: 'Experience', href: '#experience', icon: <FaSuitcase size={16} /> },
+                    { name: 'Contact', href: '#contact', icon: <FaEnvelope size={16} /> },
                   ].map((item) => (
                     <motion.a
                       key={item.name}
@@ -335,7 +375,7 @@ export default function Home() {
                       whileTap={{ scale: 0.95 }}
                     >
                       <span className="text-sm font-medium text-gray-300 group-hover:text-white flex items-center gap-2">
-                        <span className="text-base">{item.icon}</span>
+                        <span className="text-gray-200">{item.icon}</span>
                         {item.name}
                       </span>
                       <motion.div
@@ -390,11 +430,22 @@ export default function Home() {
 
                   {/* Social Icons */}
                   <div className="flex items-center gap-1">
+                    {/* Mobile: Resume Icon */}
+                    <motion.a
+                      href="/Utsav_Chandra_Resume.pdf"
+                      download
+                      aria-label="Download Resume"
+                      className="sm:hidden p-2.5 bg-white/5 hover:bg-white/10 rounded-xl transition-all border border-white/10"
+                      whileHover={{ scale: 1.15, rotate: -8 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      <FaDownload size={18} className="text-gray-300 hover:text-white" />
+                    </motion.a>
                     <motion.a
                       href="https://github.com/BLANK0104"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 hover:bg-white/10 rounded-xl transition-all"
+                      className="p-2.5 bg-white/5 hover:bg-white/10 rounded-xl transition-all border border-white/10"
                       whileHover={{ scale: 1.15, rotate: 10 }}
                       whileTap={{ scale: 0.9 }}
                     >
@@ -404,7 +455,7 @@ export default function Home() {
                       href="https://www.linkedin.com/in/utsav-chandra/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 hover:bg-white/10 rounded-xl transition-all"
+                      className="p-2.5 bg-white/5 hover:bg-white/10 rounded-xl transition-all border border-white/10"
                       whileHover={{ scale: 1.15, rotate: -10 }}
                       whileTap={{ scale: 0.9 }}
                     >
@@ -412,7 +463,7 @@ export default function Home() {
                     </motion.a>
                     <motion.button
                       onClick={copyEmail}
-                      className="relative p-2.5 hover:bg-white/10 rounded-xl transition-all"
+                      className="relative p-2.5 bg-white/5 hover:bg-white/10 rounded-xl transition-all border border-white/10"
                       whileHover={{ scale: 1.15, rotate: 10 }}
                       whileTap={{ scale: 0.9 }}
                     >
@@ -525,7 +576,7 @@ export default function Home() {
               className="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 px-4"
             >
               B.Tech Student passionate about Full Stack Development, Cloud Computing, and Cybersecurity.
-              Building projects and learning cutting-edge technologies ✨
+              Building projects and learning cutting-edge technologies.
             </motion.p>
             
             {/* Magnetic Buttons */}
@@ -548,7 +599,8 @@ export default function Home() {
                 Download Resume
               </MagneticButton>
               <MagneticButton href="#contact" variant="outline">
-                Say Hello 👋
+                <FaPaperPlane className="inline mr-2" />
+                Say Hello
               </MagneticButton>
             </motion.div>
           </motion.div>
@@ -560,14 +612,14 @@ export default function Home() {
           animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }}
           transition={{ duration: 4, repeat: Infinity }}
         >
-          💻
+          <FaLaptopCode className="text-purple-300/70" size={56} />
         </motion.div>
         <motion.div
           className="absolute bottom-1/4 right-10 text-6xl"
           animate={{ y: [0, 20, 0], rotate: [0, -10, 0] }}
           transition={{ duration: 5, repeat: Infinity }}
         >
-          ⚡
+          <FaBolt className="text-pink-300/70" size={56} />
         </motion.div>
       </section>
 
@@ -611,17 +663,26 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
                 <div className="p-6 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10">
-                  <h3 className="text-2xl font-bold mb-3 text-purple-400">🎯 Current Focus</h3>
+                  <h3 className="text-2xl font-bold mb-3 text-purple-400 flex items-center gap-2">
+                    <FaBullseye size={18} />
+                    <span>Current Focus</span>
+                  </h3>
                   <p className="text-gray-300">Building cloud-native applications and mastering Azure/AWS services for scalable solutions</p>
                 </div>
                 
                 <div className="p-6 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10">
-                  <h3 className="text-2xl font-bold mb-3 text-pink-400">📚 Learning</h3>
+                  <h3 className="text-2xl font-bold mb-3 text-pink-400 flex items-center gap-2">
+                    <FaBookOpen size={18} />
+                    <span>Learning</span>
+                  </h3>
                   <p className="text-gray-300">Kubernetes, microservices architecture, and advanced cybersecurity practices</p>
                 </div>
                 
                 <div className="p-6 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10">
-                  <h3 className="text-2xl font-bold mb-3 text-purple-400">💡 Interests</h3>
+                  <h3 className="text-2xl font-bold mb-3 text-purple-400 flex items-center gap-2">
+                    <FaLightbulb size={18} />
+                    <span>Interests</span>
+                  </h3>
                   <p className="text-gray-300">DevOps, system design, AI/ML integration, and building developer tools</p>
                 </div>
               </motion.div>
@@ -927,6 +988,22 @@ export default function Home() {
                   {achievement.title}
                 </h3>
                 <p className="text-gray-400 text-sm md:text-base">{achievement.detail}</p>
+
+                {achievement.certificate && (
+                  <div className="mt-4 md:mt-5">
+                    <motion.a
+                      href={achievement.certificate}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-sm text-gray-200 transition-all"
+                      whileHover={{ scale: 1.04 }}
+                      whileTap={{ scale: 0.96 }}
+                    >
+                      <FaExternalLinkAlt size={14} className="text-purple-300" />
+                      <span>View Certificate</span>
+                    </motion.a>
+                  </div>
+                )}
               </motion.div>
             ))}
           </div>
@@ -1078,7 +1155,7 @@ export default function Home() {
       <footer className="py-12 px-6 border-t border-white/10">
         <div className="max-w-7xl mx-auto text-center">
           <p className="text-gray-500">
-            © 2025 Utsav Chandra • B.Tech Student at NMIMS • Built with 💜 and ✨
+            © 2025 Utsav Chandra • B.Tech Student at NMIMS • Built with Next.js, Tailwind, and Framer Motion
           </p>
         </div>
       </footer>
