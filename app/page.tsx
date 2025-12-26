@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useScroll, AnimatePresence } from 'framer-motion'
+import { motion, useScroll, AnimatePresence, type HTMLMotionProps } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
 import { FaGithub, FaEnvelope, FaExternalLinkAlt, FaRocket, FaLinkedin, FaDownload, FaPaperPlane, FaPython, FaJava, FaAws, FaDocker, FaNode, FaGitAlt, FaDatabase, FaUnity } from 'react-icons/fa'
 import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiMicrosoftazure, SiMongodb, SiPostgresql, SiKubernetes, SiMysql, SiKotlin, SiGodotengine, SiBlender, SiVisualstudio } from 'react-icons/si'
@@ -1087,17 +1087,21 @@ export default function Home() {
 }
 
 // Magnetic Button Component
-function MagneticButton({ 
-  children, 
-  href, 
-  variant = "solid",
-  size = "default"
-}: { 
+type MagneticButtonProps = {
   children: React.ReactNode
   href: string
   variant?: "solid" | "outline"
   size?: "default" | "large"
-}) {
+} & Omit<HTMLMotionProps<"a">, "href" | "children" | "ref" | "onMouseMove" | "onMouseLeave">;
+
+function MagneticButton({ 
+  children, 
+  href, 
+  variant = "solid",
+  size = "default",
+  className,
+  ...anchorProps
+}: MagneticButtonProps) {
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const buttonRef = useRef<HTMLAnchorElement>(null)
 
@@ -1123,9 +1127,10 @@ function MagneticButton({
 
   return (
     <motion.a
+      {...anchorProps}
       ref={buttonRef}
       href={href}
-      className={`relative overflow-hidden rounded-full transition-all ${baseClasses} ${variantClasses} flex items-center justify-center`}
+      className={`relative overflow-hidden rounded-full transition-all ${baseClasses} ${variantClasses} flex items-center justify-center ${className ?? ""}`}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       animate={{ x: position.x, y: position.y }}
