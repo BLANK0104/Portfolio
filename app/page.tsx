@@ -202,16 +202,16 @@ export default function Home() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 100 }}
-        className="fixed top-6 left-1/2 -translate-x-1/2 z-40 px-8 py-4 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-full shadow-2xl shadow-purple-500/10"
+        className="fixed top-4 left-1/2 -translate-x-1/2 z-40 px-4 sm:px-8 py-3 sm:py-4 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-full shadow-2xl shadow-purple-500/10 max-w-[90vw] sm:max-w-none"
       >
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-4 sm:gap-8">
           <motion.div 
-            className="text-lg font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
+            className="text-base sm:text-lg font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
             whileHover={{ scale: 1.05 }}
           >
             UC
           </motion.div>
-          <div className="flex gap-6">
+          <div className="flex gap-4 sm:gap-6">
             <a 
               href="https://github.com/BLANK0104" 
               target="_blank" 
@@ -219,14 +219,14 @@ export default function Home() {
               className="hover:text-purple-400 transition-colors"
               aria-label="GitHub Profile"
             >
-              <FaGithub size={20} />
+              <FaGithub size={18} className="sm:w-5 sm:h-5" />
             </a>
             <a 
-              href="mailto:utsav.chandra@example.com" 
+              href="mailto:utsav.chandra508@nmims.in" 
               className="hover:text-purple-400 transition-colors"
               aria-label="Email Contact"
             >
-              <FaEnvelope size={20} />
+              <FaEnvelope size={18} className="sm:w-5 sm:h-5" />
             </a>
           </div>
         </div>
@@ -247,7 +247,7 @@ export default function Home() {
               animate={{ scale: 1, rotate: 0 }}
               transition={{ type: "spring", stiffness: 200, damping: 15 }}
             >
-              <div className="relative w-32 h-32 mx-auto">
+              <div className="relative w-24 h-24 md:w-32 md:h-32 mx-auto">
                 <motion.div
                   className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 blur-xl opacity-50"
                   animate={{
@@ -264,7 +264,7 @@ export default function Home() {
               </div>
             </motion.div>
 
-            <h1 className="text-7xl md:text-9xl font-black mb-6 tracking-tight">
+            <h1 className="text-5xl sm:text-7xl md:text-9xl font-black mb-6 tracking-tight">
               <motion.span
                 className="inline-block bg-gradient-to-r from-white via-purple-200 to-white bg-clip-text text-transparent"
                 initial={{ opacity: 0, y: 50 }}
@@ -276,13 +276,13 @@ export default function Home() {
             </h1>
             
             <motion.div
-              className="text-3xl md:text-5xl font-bold mb-8 h-16 flex items-center justify-center"
+              className="text-2xl sm:text-3xl md:text-5xl font-bold mb-8 min-h-[4rem] md:min-h-[5rem] flex items-center justify-center px-4"
               onHoverStart={scrambleText}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
             >
-              <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent cursor-pointer">
+              <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent cursor-pointer text-center">
                 {scrambledText}
               </span>
             </motion.div>
@@ -291,7 +291,7 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
-              className="text-xl text-gray-400 max-w-2xl mx-auto mb-12"
+              className="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 px-4"
             >
               B.Tech Student passionate about Full Stack Development, Cloud Computing, and Cybersecurity.
               Building projects and learning cutting-edge technologies ✨
@@ -312,7 +312,7 @@ export default function Home() {
                   transition={{ type: "spring", stiffness: 400 }}
                 />
               </MagneticButton>
-              <MagneticButton href="mailto:utsav.chandra@example.com" variant="outline">
+              <MagneticButton href="mailto:utsav.chandra508@nmims.in" variant="outline">
                 Say Hello 👋
               </MagneticButton>
             </motion.div>
@@ -345,13 +345,13 @@ export default function Home() {
             viewport={{ once: true, margin: "-100px" }}
             className="text-center mb-20"
           >
-            <h2 className="text-6xl md:text-8xl font-black mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <h2 className="text-4xl sm:text-6xl md:text-8xl font-black mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               My Projects
             </h2>
-            <p className="text-gray-400 text-xl">Hover for a surprise</p>
+            <p className="text-gray-400 text-base sm:text-lg md:text-xl">Hover for a surprise</p>
           </motion.div>
           
-          <div className="grid md:grid-cols-3 gap-6 auto-rows-[300px]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 auto-rows-[250px] md:auto-rows-[300px]">
             {projects.map((project, index) => (
               <TiltCard
                 key={index}
@@ -370,15 +370,15 @@ export default function Home() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-6xl md:text-8xl font-black mb-20 text-center bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
+            className="text-4xl sm:text-6xl md:text-8xl font-black mb-12 md:mb-20 text-center bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
           >
             Experience & Internships
           </motion.h2>
           
-          <div className="space-y-12 relative">
+          <div className="space-y-8 md:space-y-12 relative">
             {/* Animated Line */}
             <motion.div
-              className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-purple-500 via-pink-500 to-purple-500"
+              className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 md:w-1 bg-gradient-to-b from-purple-500 via-pink-500 to-purple-500"
               initial={{ scaleY: 0 }}
               whileInView={{ scaleY: 1 }}
               viewport={{ once: true }}
@@ -396,31 +396,31 @@ export default function Home() {
               >
                 {/* Dot */}
                 <motion.div
-                  className="absolute left-8 md:left-1/2 w-6 h-6 -ml-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full z-10 shadow-lg shadow-purple-500/50"
+                  className="absolute left-4 md:left-1/2 w-4 h-4 md:w-6 md:h-6 -ml-2 md:-ml-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full z-10 shadow-lg shadow-purple-500/50"
                   whileHover={{ scale: 1.5, rotate: 180 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 />
                 
                 {/* Card */}
                 <motion.div
-                  className="flex-1 ml-20 md:ml-0"
+                  className="flex-1 ml-12 md:ml-20 lg:ml-0"
                   whileHover={{ scale: 1.05, rotate: index % 2 === 0 ? 2 : -2 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <div className="p-8 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-purple-500/50 transition-all shadow-xl">
-                    <div className="flex justify-between items-start mb-4">
-                      <div className="flex items-center gap-4">
+                  <div className="p-6 md:p-8 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-purple-500/50 transition-all shadow-xl">
+                    <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-4">
+                      <div className="flex items-center gap-3 md:gap-4">
                         <img 
                           src={exp.logo} 
                           alt={exp.company}
-                          className="w-12 h-12 object-contain rounded-lg bg-white/10 p-2"
+                          className="w-10 h-10 md:w-12 md:h-12 object-contain rounded-lg bg-white/10 p-2"
                         />
                         <div>
-                          <h3 className="text-2xl font-bold mb-2">{exp.company}</h3>
-                          <p className="text-purple-400 font-medium">{exp.role}</p>
+                          <h3 className="text-xl md:text-2xl font-bold mb-1 md:mb-2">{exp.company}</h3>
+                          <p className="text-purple-400 font-medium text-sm md:text-base">{exp.role}</p>
                         </div>
                       </div>
-                      <span className="px-3 py-1 bg-purple-500/20 rounded-full text-sm font-medium">
+                      <span className="px-3 py-1 bg-purple-500/20 rounded-full text-xs md:text-sm font-medium">
                         {exp.year}
                       </span>
                     </div>
@@ -439,20 +439,20 @@ export default function Home() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-6xl md:text-8xl font-black mb-20 text-center bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
+            className="text-4xl sm:text-6xl md:text-8xl font-black mb-12 md:mb-20 text-center bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
           >
             Skills & Learning
           </motion.h2>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="p-8 bg-gradient-to-br from-purple-500/5 to-pink-500/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-purple-500/30 transition-all"
+              className="p-6 md:p-8 bg-gradient-to-br from-purple-500/5 to-pink-500/5 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-purple-500/30 transition-all"
             >
-              <h3 className="text-2xl font-bold mb-4 text-purple-400">Development</h3>
+              <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-purple-400">Development</h3>
               <div className="flex flex-wrap gap-2">
                 {["Full Stack Web Dev", "Mobile Development", "REST APIs", "Database Management"].map((skill, i) => (
                   <span key={i} className="px-3 py-1 bg-white/5 rounded-full text-sm border border-white/10">
@@ -557,12 +557,12 @@ export default function Home() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-6xl md:text-8xl font-black mb-20 text-center bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
+            className="text-4xl sm:text-6xl md:text-8xl font-black mb-12 md:mb-20 text-center bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
           >
             Achievements & Certifications
           </motion.h2>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {achievements.map((achievement, index) => (
               <motion.div
                 key={index}
@@ -572,12 +572,12 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -10, rotateX: 5 }}
                 style={{ transformStyle: "preserve-3d" }}
-                className="p-8 bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-purple-500/50 transition-all cursor-pointer"
+                className="p-6 md:p-8 bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-purple-500/50 transition-all cursor-pointer"
               >
-                <h3 className="text-2xl font-bold mb-3 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                <h3 className="text-lg md:text-2xl font-bold mb-2 md:mb-3 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
                   {achievement.title}
                 </h3>
-                <p className="text-gray-400">{achievement.detail}</p>
+                <p className="text-gray-400 text-sm md:text-base">{achievement.detail}</p>
               </motion.div>
             ))}
           </div>
@@ -607,7 +607,7 @@ export default function Home() {
             transition={{ duration: 0.8 }}
           >
             <motion.h2 
-              className="text-7xl md:text-9xl font-black mb-12 leading-tight"
+              className="text-5xl sm:text-7xl md:text-9xl font-black mb-8 md:mb-12 leading-tight"
               whileHover={{ scale: 1.05 }}
             >
               <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
@@ -617,8 +617,8 @@ export default function Home() {
               <span className="text-white">& Collaborate</span>
             </motion.h2>
             
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <MagneticButton href="mailto:utsav.chandra@example.com" size="large">
+            <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center px-4">
+              <MagneticButton href="mailto:utsav.chandra508@nmims.in" size="large">
                 <FaRocket className="mr-2" />
                 Get in Touch
               </MagneticButton>
@@ -671,8 +671,8 @@ function MagneticButton({
   }
 
   const baseClasses = size === "large" 
-    ? "px-12 py-6 text-xl font-bold" 
-    : "px-8 py-4 text-lg font-semibold"
+    ? "px-8 py-4 sm:px-12 sm:py-6 text-lg sm:text-xl font-bold w-full sm:w-auto" 
+    : "px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-semibold w-full sm:w-auto"
 
   const variantClasses = variant === "solid"
     ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/50"
@@ -719,6 +719,10 @@ function TiltCard({ project, className }: { project: any, className?: string }) 
     setIsHovered(false)
   }
 
+  const handleTouchStart = () => {
+    setIsHovered(true)
+  }
+
   return (
     <motion.div
       ref={cardRef}
@@ -726,6 +730,7 @@ function TiltCard({ project, className }: { project: any, className?: string }) 
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onMouseEnter={() => setIsHovered(true)}
+      onTouchStart={handleTouchStart}
       animate={{
         rotateX,
         rotateY,
@@ -751,7 +756,7 @@ function TiltCard({ project, className }: { project: any, className?: string }) 
         <div className="absolute inset-0 bg-gradient-to-br from-black/70 to-black/30" />
         
         {/* Content */}
-        <div className="relative h-full p-8 flex flex-col justify-end" style={{ transform: "translateZ(50px)" }}>
+        <div className="relative h-full p-6 md:p-8 flex flex-col justify-end" style={{ transform: "translateZ(50px)" }}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20 }}
@@ -763,7 +768,7 @@ function TiltCard({ project, className }: { project: any, className?: string }) 
             </span>
           </motion.div>
           
-          <h3 className="text-3xl font-black mb-3 text-white">
+          <h3 className="text-2xl md:text-3xl font-black mb-2 md:mb-3 text-white">
             {project.name}
           </h3>
           
@@ -771,8 +776,7 @@ function TiltCard({ project, className }: { project: any, className?: string }) 
             initial={{ opacity: 0 }}
             animate={{ opacity: isHovered ? 1 : 0 }}
             transition={{ duration: 0.3 }}
-            className="text-white/80 mb-4"
-          >
+            className="text-white/80 mb-3 md:mb-4 text-sm md:text-base">
             {project.description}
           </motion.p>
           
@@ -780,10 +784,10 @@ function TiltCard({ project, className }: { project: any, className?: string }) 
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 10 }}
             transition={{ duration: 0.3, delay: 0.1 }}
-            className="flex flex-wrap gap-2 mb-4"
+            className="flex flex-wrap gap-1.5 md:gap-2 mb-3 md:mb-4"
           >
             {project.tech.map((tech: string, i: number) => (
-              <span key={i} className="px-2 py-1 bg-white/10 backdrop-blur-sm rounded-lg text-xs">
+              <span key={i} className="px-2 py-0.5 md:px-2 md:py-1 bg-white/10 backdrop-blur-sm rounded-lg text-xs">
                 {tech}
               </span>
             ))}
@@ -793,11 +797,14 @@ function TiltCard({ project, className }: { project: any, className?: string }) 
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-white font-medium hover:gap-3 transition-all"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/20 text-white font-medium transition-all group"
             animate={{ opacity: isHovered ? 1 : 0 }}
-            whileHover={{ x: 5 }}
+            whileHover={{ scale: 1.05 }}
+            title="View source code on GitHub"
           >
-            View Project <FaExternalLinkAlt size={14} />
+            <FaGithub size={16} className="group-hover:rotate-12 transition-transform" />
+            <span>View on GitHub</span>
+            <FaExternalLinkAlt size={12} className="opacity-70" />
           </motion.a>
         </div>
         
